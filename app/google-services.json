@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "285837829574",
+    "project_id": "sendmylocation-8acb3",
+    "storage_bucket": "sendmylocation-8acb3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:285837829574:android:cc11541464f3bec3847ec7",
+        "android_client_info": {
+          "package_name": "com.egitim.sendmylocation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "285837829574-c3k43693rcmnkqrjsli8uk6l2ruqbhhr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4eB-08JO9W-Qot5lFeV5Vb3f2B6eJzi8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "285837829574-c3k43693rcmnkqrjsli8uk6l2ruqbhhr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
