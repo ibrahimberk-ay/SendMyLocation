@@ -127,6 +127,7 @@ public class SendLocationActivity extends AppCompatActivity implements LocationL
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
+                            Toast.makeText(SendLocationActivity.this, "Location Sent!", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
