@@ -36,7 +36,8 @@ import java.util.Map;
 import java.util.Objects;
 
 public class SendLocationActivity extends AppCompatActivity implements LocationListener{
-    private TextView locationInfo;
+    private TextView locationInfo, conditionText;
+    private int priorityFlag;
     private FirebaseAuth auth;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     @SuppressLint("MissingInflatedId")
@@ -56,6 +57,7 @@ public class SendLocationActivity extends AppCompatActivity implements LocationL
         }
 
         locationInfo = findViewById(R.id.textOfLocation);
+        conditionText = findViewById(R.id.conditionText);
     }
 
     //Uygulamaya seçenekler menüsü ekliyorum
@@ -81,18 +83,38 @@ public class SendLocationActivity extends AppCompatActivity implements LocationL
     }
 
 
-    public void getLocation(View view){
+    public void priorityMediumClick(View view){
         //İzin isteme ve kontrol aşaması
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED){
             //izin kontrolünden sonra konum alma fonksiyonu çağırılır
-            retrieveLocation();
+            retrieveLocation(1);
+        }else{
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 200);
+        }
+    }
+    public void priorityLessClick(View view){
+        //İzin isteme ve kontrol aşaması
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED){
+            //izin kontrolünden sonra konum alma fonksiyonu çağırılır
+            retrieveLocation(2);
+        }else{
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 200);
+        }
+    }
+    public void emergencyClick(View view){
+        //İzin isteme ve kontrol aşaması
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED){
+            //izin kontrolünden sonra konum alma fonksiyonu çağırılır
+            retrieveLocation(0);
         }else{
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 200);
         }
     }
     @SuppressLint("MissingPermission")
-    private void retrieveLocation() {
+    private void retrieveLocation(int priorityFlag) {
         //Android cihazın konum gönderdiği sıradaki saat ve tarih bilgilerini alıyorum
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
@@ -107,7 +129,15 @@ public class SendLocationActivity extends AppCompatActivity implements LocationL
         //Eğer konum verisi alınabilirse bu bilgilerle bir nesne oluşturuyorum ve bu nesneyi veritabanına gönderiyorum
         if(location != null){
             LocationData locationData = new LocationData();
-
+            if(priorityFlag == 0){
+                locationData.setPriority(0);
+            }
+            if(priorityFlag == 1){
+                locationData.setPriority(1);
+            }
+            if(priorityFlag == 2){
+                locationData.setPriority(2);
+            }
             double latitude = location.getLatitude();
             double longitude = location.getLongitude();
 
@@ -118,6 +148,7 @@ public class SendLocationActivity extends AppCompatActivity implements LocationL
             locationData.setLatitude(latitude);
             locationData.setLongitude(longitude);
             locationData.setDateTime(dtf.format(now));
+            locationData.setCondition(conditionText.getText().toString());
 
             String text = "Latitude: " + latitude + " \n " + "Longitude: " + longitude;
             locationInfo.setText(text);
@@ -159,7 +190,7 @@ public class SendLocationActivity extends AppCompatActivity implements LocationL
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         //izin kontrolleri
         if(requestCode == 200 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-            retrieveLocation();
+
         }else{
             Toast.makeText(this,"Permission Denied!", Toast.LENGTH_SHORT).show();
         }

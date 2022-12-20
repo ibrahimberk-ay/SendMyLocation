@@ -4,52 +4,108 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@color/background"
     tools:context=".SendLocationActivity">
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/getLocationButton"
-        android:layout_width="184dp"
-        android:layout_height="188dp"
-
-        android:layout_marginTop="119dp"
-        android:layout_marginBottom="62dp"
-        android:background="@drawable/custom_button"
+        android:layout_width="94dp"
+        android:layout_height="94dp"
+        android:background="@drawable/less"
         android:fontFamily="sans-serif-smallcaps"
-        android:onClick="getLocation"
-        android:text="Send"
+        android:onClick="priorityLessClick"
+        android:text="ŞÜPHELİ DURUM"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textSize="34sp"
+        android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textOfLocation"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toEndOf="@+id/getLocationButton2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.225" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/getLocationButton3"
+        android:layout_width="94dp"
+        android:layout_height="94dp"
+        android:background="@drawable/emergency"
+        android:fontFamily="sans-serif-smallcaps"
+        android:onClick="emergencyClick"
+        android:text="ACİL DURUM"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/getLocationButton2"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.225" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/getLocationButton2"
+        android:layout_width="94dp"
+        android:layout_height="94dp"
+        android:background="@drawable/medium"
+        android:fontFamily="sans-serif-smallcaps"
+        android:onClick="priorityMediumClick"
+        android:text="TEHLİKELİ DURUM"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.225" />
 
     <TextView
         android:id="@+id/emailShowText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.038"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textOfLocation" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.972" />
 
     <TextView
         android:id="@+id/textOfLocation"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="130dp"
+        android:layout_width="411dp"
+        android:layout_height="152dp"
         android:text="..."
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="22sp"
-        app:layout_constraintBottom_toTopOf="@+id/emailShowText"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/getLocationButton" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.842" />
+
+    <EditText
+        android:id="@+id/conditionText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Durum Belirtebilirsiniz"
+        android:textColorHint="@color/hintColor"
+        android:inputType="textPersonName"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textOfLocation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/getLocationButton2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

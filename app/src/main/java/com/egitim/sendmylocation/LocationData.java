@@ -6,17 +6,20 @@ public class LocationData {
     private double latitude;// enlem bilgisi
     private double longitude;//boylam bilgisi
     private String dateTime;//tarih ve zaman bilgisini tutan değişken
-
+    private int priority;
+    private String condition;
     //parametresiz constructor
     public LocationData(){}
 
     //parametreli constructor
-    public LocationData(String userId, String userName, double latitude, double longitude,String dateTime){
+    public LocationData(String userId, String userName, double latitude, double longitude,String dateTime, int priority,String condition){
         this.userId = userId;
         this.userName = userName;
         this.latitude = latitude;
         this.longitude = longitude;
         this.dateTime = dateTime;
+        this.priority = priority;
+        this.condition = condition;
     }
 
     //Getter ve Setter'lar
@@ -58,5 +61,19 @@ public class LocationData {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public int getPriority(){return priority;}
+
+    public void setPriority(int priority){
+        this.priority = priority;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
     }
 }
