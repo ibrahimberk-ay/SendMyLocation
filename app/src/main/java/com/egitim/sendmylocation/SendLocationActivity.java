@@ -126,6 +126,7 @@ public class SendLocationActivity extends AppCompatActivity implements LocationL
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,2500,1,this);
         Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
+
         //Eğer konum verisi alınabilirse bu bilgilerle bir nesne oluşturuyorum ve bu nesneyi veritabanına gönderiyorum
         if(location != null){
             LocationData locationData = new LocationData();
@@ -190,7 +191,7 @@ public class SendLocationActivity extends AppCompatActivity implements LocationL
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         //izin kontrolleri
         if(requestCode == 200 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-
+            Toast.makeText(this,"Permission Granted!", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(this,"Permission Denied!", Toast.LENGTH_SHORT).show();
         }
